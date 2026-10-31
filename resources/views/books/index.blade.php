@@ -9,6 +9,7 @@
 <body>
 
     <h1>My Reading List</h1>
+    <a href="{{ route('books.create') }}">Add book</a>
 
     @if($books->isEmpty())
 
