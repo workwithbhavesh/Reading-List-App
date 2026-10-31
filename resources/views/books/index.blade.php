@@ -26,6 +26,16 @@
     <p>Status: {{ $book->status }}</p>
 
     <a href="{{ route('books.edit', $book) }}">Edit</a>
+
+    <form action="{{ route('books.destroy', $book) }}"
+      method="POST"
+      onsubmit="return confirm('Are you sure?')">
+
+    @csrf
+    @method('DELETE')
+
+    <button type="submit">Delete</button>
+</form>
 </div>
 
         @endforeach
