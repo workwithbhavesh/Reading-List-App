@@ -18,14 +18,15 @@
     @else
 
         @foreach($books as $book)
+<div>
+    <h3>{{ $book->title }}</h3>
 
-            <div>
-                <h3>{{ $book->title }}</h3>
+    <p>Author: {{ $book->author }}</p>
 
-                <p>Author: {{ $book->author }}</p>
+    <p>Status: {{ $book->status }}</p>
 
-                <p>Status: {{ $book->status }}</p>
-            </div>
+    <a href="{{ route('books.edit', $book) }}">Edit</a>
+</div>
 
         @endforeach
 

@@ -15,20 +15,48 @@ class BookController extends Controller
     }
 
     public function create()
-{
-    return view('books.create');
-}
+    {
+        return view('books.create');
+    }
 
-public function store(Request $request)
-{
-    $validated = $request->validate([
-        'title' => 'required|string|max:255',
-        'author' => 'required|string|max:255',
-        'status' => 'required|in:to-read,reading,finished',
-    ]);
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'status' => 'required|in:to-read,reading,finished',
+        ]);
 
-    Book::create($validated);
+        Book::create($validated);
 
-    return redirect()->route('books.index');
-}
+        return redirect()->route('books.index');
+    }
+
+    public function edit(Book $book)
+    {
+        return view('books.edit', compact('book'));
+    }
+
+    public function update(Request $request, Book $book)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'status' => 'required|in:to-read,reading,finished',
+        ]);
+
+        $book->update($validated);
+
+        return redirect()->route('books.index');
+    }
+
+    public function show(Book $book)
+    {
+        //
+    }
+
+    public function destroy(Book $book)
+    {
+        //
+    }
 }
